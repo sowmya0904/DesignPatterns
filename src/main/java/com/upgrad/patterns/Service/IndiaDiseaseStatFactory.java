@@ -24,23 +24,22 @@ public class IndiaDiseaseStatFactory {
     public IndianDiseaseStat GetInstance(SourceType sourceType) {
         //create a conditional statement
         //if the sourceType is JohnHopkins
-        String source=sourceType.toString();
+        String source = sourceType.toString();
         System.out.println(source);
         try {
             if (source.equals("JohnHopkins")) {
                 //return johnHopkinsStrategy
-                 diseaseStat= johnHopkinsStrategy;
-            } else if (source.equals("DiseaseSh") ){
+                diseaseStat = johnHopkinsStrategy;
+            } else if (source.equals("DiseaseSh")) {
                 //if the sourceType is DiseaseSh
-               // return diseaseShStrategy
-                diseaseStat= diseaseShStrategy;
+                // return diseaseShStrategy
+                diseaseStat = diseaseShStrategy;
             }
-        } catch (
-                Exception e) {
+        } catch (Exception e) {
             throw new IllegalArgumentException("The provided sourceType is not valid");
         }
         //create a message for invalid disease strategy/sourceType
         //throw the message as an Illegal argument exception
-          return diseaseStat;
+        return diseaseStat;
     }
 }

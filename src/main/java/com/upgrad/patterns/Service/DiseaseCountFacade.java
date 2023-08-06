@@ -11,15 +11,14 @@ import static com.upgrad.patterns.Constants.SourceType.JohnHopkins;
 @Service
 public class DiseaseCountFacade {
 
-   //create a private object indiaDiseaseStat of type IndiaDiseaseStatFactory
+    //create a private object indiaDiseaseStat of type IndiaDiseaseStatFactory
     public IndiaDiseaseStatFactory indiaDiseaseStat;
 
     @Autowired
-    public DiseaseCountFacade(IndiaDiseaseStatFactory indiaDiseaseStat)
-    {
+    public DiseaseCountFacade(IndiaDiseaseStatFactory indiaDiseaseStat) {
         this.indiaDiseaseStat = indiaDiseaseStat;
     }
-    
+
     //create a public method getDiseaseShCount() that has Object as its return type
     public Object getDiseaseShCount() {
         //call the GetInstance method with DiseaseSh as the parameter using
@@ -30,7 +29,7 @@ public class DiseaseCountFacade {
         //return the response
         return activeCount;
     }
-    
+
     //create a public method getJohnHopkinCount() that has Object as its return type
     public Object getJohnHopkinCount() {
         //call the GetInstance method with JohnHopkins as the parameter using
@@ -49,8 +48,7 @@ public class DiseaseCountFacade {
             Float active = Float.valueOf(indiaDiseaseStat.GetInstance(sourceEnum).GetActiveCount());
             Float percent = Float.valueOf((active / population));
             return String.format("%.3f", percent * 100);
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             String message = String.format("Invalid source type specified. Available source type (%s, %s)", DiseaseSh, SourceType.JohnHopkins);
             throw new IllegalArgumentException(message);
         }

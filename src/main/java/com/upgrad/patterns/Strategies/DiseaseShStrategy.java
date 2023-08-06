@@ -19,23 +19,21 @@ import java.util.Arrays;
 @Service
 public class DiseaseShStrategy implements IndianDiseaseStat {
 
+    String count;
     private Logger logger = LoggerFactory.getLogger(DiseaseShStrategy.class);
-
     private RestTemplate restTemplate;
-
     @Value("${config.diseaseSh-io-url}")
     private String baseUrl;
 
-    public DiseaseShStrategy()
-    {
+    public DiseaseShStrategy() {
         restTemplate = RestServiceGenerator.GetInstance();
     }
-    String count;
+
     @Override
     public String GetActiveCount() {
-    	//write a try catch block here
-    	
-    	//try block
+        //write a try catch block here
+
+        //try block
         try {
 
             DiseaseShResponse diseaseShResponseResponses = getDiseaseShResponseResponses();
@@ -46,15 +44,15 @@ public class DiseaseShStrategy implements IndianDiseaseStat {
             count = String.valueOf(Math.round(cases));
             //return the response after rounding it up to 0 decimal places
 
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error("error");
         }
-    	//catch block
-    		//log the error
+        //catch block
+        //log the error
 
         return count;
-    	
-    	
+
+
     }
 
     @Override
@@ -72,7 +70,7 @@ public class DiseaseShStrategy implements IndianDiseaseStat {
         DiseaseShResponse temp = restTemplate.exchange(
                 baseUrl, HttpMethod.GET, new HttpEntity<Object>(headers),
                 DiseaseShResponse.class).getBody();
-        
+
         System.out.println(temp);
         return temp;
     }
