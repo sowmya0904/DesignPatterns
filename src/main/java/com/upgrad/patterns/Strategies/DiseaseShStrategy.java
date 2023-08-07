@@ -35,17 +35,16 @@ public class DiseaseShStrategy implements IndianDiseaseStat {
 
         //try block
         try {
-
-            DiseaseShResponse diseaseShResponseResponses = getDiseaseShResponseResponses();
             //obtain response from the getDiseaseShResponseResponses() method
             //store it in an object
+            DiseaseShResponse diseaseShResponseResponses = getDiseaseShResponseResponses();
             //get the response using the getCases() method
             Float cases = diseaseShResponseResponses.getCases();
             count = String.valueOf(Math.round(cases));
             //return the response after rounding it up to 0 decimal places
 
-        } catch (Exception e) {
-            logger.error("error");
+        } catch (Error e) {
+            logger.error("error ", e);
         }
         //catch block
         //log the error
@@ -67,9 +66,7 @@ public class DiseaseShStrategy implements IndianDiseaseStat {
         HttpEntity<String> entity = new HttpEntity<String>("parameters", headers);
 
 
-        DiseaseShResponse temp = restTemplate.exchange(
-                baseUrl, HttpMethod.GET, new HttpEntity<Object>(headers),
-                DiseaseShResponse.class).getBody();
+        DiseaseShResponse temp = restTemplate.exchange(baseUrl, HttpMethod.GET, new HttpEntity<Object>(headers), DiseaseShResponse.class).getBody();
 
         System.out.println(temp);
         return temp;

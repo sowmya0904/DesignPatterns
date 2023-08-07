@@ -7,6 +7,8 @@ import com.upgrad.patterns.Strategies.JohnHopkinsStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import static com.upgrad.patterns.Constants.SourceType.DiseaseSh;
+
 @Service
 public class IndiaDiseaseStatFactory {
     private IndianDiseaseStat diseaseShStrategy;
@@ -22,10 +24,9 @@ public class IndiaDiseaseStatFactory {
 
     //create a method named GetInstance with return type as IndianDiseaseStat and parameter of type sourceType
     public IndianDiseaseStat GetInstance(SourceType sourceType) {
+        String source = sourceType.toString();
         //create a conditional statement
         //if the sourceType is JohnHopkins
-        String source = sourceType.toString();
-        System.out.println(source);
         try {
             if (source.equals("JohnHopkins")) {
                 //return johnHopkinsStrategy
@@ -36,7 +37,8 @@ public class IndiaDiseaseStatFactory {
                 diseaseStat = diseaseShStrategy;
             }
         } catch (Exception e) {
-            throw new IllegalArgumentException("The provided sourceType is not valid");
+            String message = String.format("Invalid source type specified. Available source type (%s, %s)", DiseaseSh, SourceType.JohnHopkins);
+            throw new IllegalArgumentException(message);
         }
         //create a message for invalid disease strategy/sourceType
         //throw the message as an Illegal argument exception
