@@ -17,8 +17,9 @@ public class RestServiceGenerator {
 
     public static RestTemplate GetInstance() {
         // return restTemplate object if initialized already
+        // Initialize restTemplate. This is executed only once.
+        //return restTemplate object
         if (restTemplate == null) {
-            // Initialize restTemplate. This is executed only once.
             restTemplate = new RestTemplateBuilder().interceptors((request, body, execution) -> {
                 logger.info(String.format("Calling %s %s", request.getMethod(), request.getURI()));
                 ClientHttpResponse clientHttpResponse = execution.execute(request, body);
@@ -26,7 +27,6 @@ public class RestServiceGenerator {
                 return clientHttpResponse;
             }).build();
         }
-        //return restTemplate object
         return restTemplate;
     }
 }

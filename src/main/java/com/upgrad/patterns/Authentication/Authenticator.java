@@ -9,13 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 public class Authenticator {
 
     //create a public static method GetAuthProcessor of the return type AuthenticationProcessor
+    // create an object of type JwtAuthProcessor
+    // Chain Authentication processors, first JWT processor is to be used first and then basic auth processor
+    // return the object
     public static AuthenticationProcessor GetAuthProcessor() {
         AuthenticationProcessor jwtProcess = new JwtAuthProcessor(null);
         AuthenticationProcessor basicProcess = new BasicAuthProcessor(jwtProcess);
-        // create an object of type JwtAuthProcessor
-        // Chain Authentication processors, first JWT processor is to be used first and then basic auth processor
-        // return the object
-
         return basicProcess;
     }
 

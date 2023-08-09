@@ -20,24 +20,25 @@ public class DiseaseCountFacade {
     }
 
     //create a public method getDiseaseShCount() that has Object as its return type
+    //call the GetInstance method with DiseaseSh as the parameter using
+    // the indiaDiseaseStat object created on line 10
+    //Based on the strategy returned, call the specific implementation of the GetActiveCount method
+    //return the response
     public Object getDiseaseShCount() {
-        //call the GetInstance method with DiseaseSh as the parameter using
-        // the indiaDiseaseStat object created on line 10
         IndianDiseaseStat diseaseStat = indiaDiseaseStat.GetInstance(DiseaseSh);
-        //Based on the strategy returned, call the specific implementation of the GetActiveCount method
         String activeCount = diseaseStat.GetActiveCount();
-        //return the response
         return activeCount;
     }
 
     //create a public method getJohnHopkinCount() that has Object as its return type
+    //call the GetInstance method with JohnHopkins as the parameter using
+    // the indiaDiseaseStat object created on line 10
+    //Based on the strategy returned, call the specific implementation of the GetActiveCount method
+    //return the response
+
     public Object getJohnHopkinCount() {
-        //call the GetInstance method with JohnHopkins as the parameter using
-        // the indiaDiseaseStat object created on line 10
         IndianDiseaseStat diseaseStat = indiaDiseaseStat.GetInstance(JohnHopkins);
-        //Based on the strategy returned, call the specific implementation of the GetActiveCount method
         String activeCount = diseaseStat.GetActiveCount();
-        //return the response
         return activeCount;
     }
 

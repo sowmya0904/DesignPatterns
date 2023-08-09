@@ -35,26 +35,24 @@ public class JohnHopkinsStrategy implements IndianDiseaseStat {
     public String GetActiveCount() {
 
         //try block
+        //get response from the getJohnHopkinResponses method
+        //filter the data based such that country equals India (use getCountry() to get the country value)
+        //Map the data to "confirmed" value (use getStats() and getConfirmed() to get stats value and confirmed value)
+        //Reduce the data to get a sum of all the "confirmed" values
+        //return the response after rounding it up to 0 decimal places
+        //catch block
+        //log the error
         try {
-            //get response from the getJohnHopkinResponses method
             JohnHopkinResponse[] johnHopkinResponses = getJohnHopkinResponses();
-            //filter the data based such that country equals India (use getCountry() to get the country value)
             List<JohnHopkinResponse> country = Arrays.stream(johnHopkinResponses).filter(j -> j.getCountry().equals("India")).collect(Collectors.toList());
-            //Map the data to "confirmed" value (use getStats() and getConfirmed() to get stats value and confirmed value)
-            //Reduce the data to get a sum of all the "confirmed" values
-            //return the response after rounding it up to 0 decimal places
             country.forEach(c -> {
                 float value = confirmed + c.getStats().getConfirmed();
                 confirmed = value;
             });
-
         } catch (Exception e) {
             logger.error("error ", e);
         }
-        //catch block
-        //log the error
         return String.valueOf(Math.round(confirmed));
-
     }
 
     @Override

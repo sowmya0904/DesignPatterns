@@ -23,22 +23,23 @@ public class IndiaDiseaseStatFactory {
 
 
     //create a method named GetInstance with return type as IndianDiseaseStat and parameter of type sourceType
+    //create a conditional statement
+    //if the sourceType is JohnHopkins
+    //return johnHopkinsStrategy
+    //if the sourceType is DiseaseSh
+    // return diseaseShStrategy
+    //create a message for invalid disease strategy/sourceType
+    //throw the message as an Illegal argument exception
+
     public IndianDiseaseStat GetInstance(SourceType sourceType) {
         String source = sourceType.toString();
-        //create a conditional statement
-        //if the sourceType is JohnHopkins
         try {
             if (source.equals("JohnHopkins")) {
-                //return johnHopkinsStrategy
                 diseaseStat = johnHopkinsStrategy;
             } else if (source.equals("DiseaseSh")) {
-                //if the sourceType is DiseaseSh
-                // return diseaseShStrategy
                 diseaseStat = diseaseShStrategy;
             }
-        }//create a message for invalid disease strategy/sourceType
-        //throw the message as an Illegal argument exception
-        catch (Exception e) {
+        } catch (Exception e) {
             String message = String.format("Invalid source type specified. Available source type (%s, %s)", DiseaseSh, SourceType.JohnHopkins);
             throw new IllegalArgumentException(message);
         }
