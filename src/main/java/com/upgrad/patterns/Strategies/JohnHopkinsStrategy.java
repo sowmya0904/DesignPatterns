@@ -48,7 +48,7 @@ public class JohnHopkinsStrategy implements IndianDiseaseStat {
                 confirmed = value;
             });
 
-        } catch (Error e) {
+        } catch (Exception e) {
             logger.error("error ", e);
         }
         //catch block
