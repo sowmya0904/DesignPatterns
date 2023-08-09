@@ -36,12 +36,13 @@ public class IndiaDiseaseStatFactory {
                 // return diseaseShStrategy
                 diseaseStat = diseaseShStrategy;
             }
-        } catch (Exception e) {
+        }//create a message for invalid disease strategy/sourceType
+        //throw the message as an Illegal argument exception
+        catch (Exception e) {
             String message = String.format("Invalid source type specified. Available source type (%s, %s)", DiseaseSh, SourceType.JohnHopkins);
             throw new IllegalArgumentException(message);
         }
-        //create a message for invalid disease strategy/sourceType
-        //throw the message as an Illegal argument exception
+
         return diseaseStat;
     }
 }
